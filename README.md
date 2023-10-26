@@ -28,7 +28,7 @@ ollama pull zephyr:7b-alpha-q4_K_M
 ### Ask questions
 
 ```shell
-python privateGPT.py
+python privateGPT.py --hide-source
 
 Enter a query: How many locations does WeWork have?
 
