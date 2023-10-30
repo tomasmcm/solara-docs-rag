@@ -3,12 +3,13 @@ from langchain.chains import RetrievalQA
 from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 from langchain.vectorstores import Chroma
-from langchain.llms import Ollama
+from langchain.llms import Together
 import os
 import argparse
 import time
 
-model = os.environ.get("MODEL", "zephyr:7b-alpha-q4_K_M")
+model = os.environ.get("MODEL", "Open-Orca/Mistral-7B-OpenOrca")
+together_api_key = os.environ.get("TOGETHER_API_KEY", "")
 # For embeddings model, the example uses a sentence-transformers model
 # https://www.sbert.net/docs/pretrained_models.html 
 # "The all-mpnet-base-v2 model provides the best quality, while all-MiniLM-L6-v2 is 5 times faster and still offers good quality."
@@ -27,7 +28,14 @@ def main():
     # activate/deactivate the streaming StdOut callback for LLMs
     callbacks = [] if args.mute_stream else [StreamingStdOutCallbackHandler()]
 
-    llm = Ollama(model=model, callbacks=callbacks)
+    llm = Together(
+        model=model,
+        temperature=0.8,
+        max_tokens=1024,
+        top_k=1,
+        together_api_key=together_api_key,
+        callbacks=callbacks
+    )
 
     qa = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=retriever, return_source_documents= not args.hide_source)
     # Interactive questions and answers

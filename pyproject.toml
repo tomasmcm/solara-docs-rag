@@ -8,7 +8,6 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.10"
-langchain = "0.0.323"
 gpt4all = "^1.0.3"
 chromadb = "^0.3.26"
 PyMuPDF = "^1.22.5"
@@ -20,6 +19,8 @@ pandoc = "^2.3"
 pypandoc = "^1.11"
 tqdm = "^4.65.0"
 sentence-transformers = "^2.2.2"
+together = "^0.2.6"
+langchain = "^0.0.325"
 
 [build-system]
 requires = ["poetry-core"]
