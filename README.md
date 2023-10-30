@@ -19,28 +19,15 @@ Install the Python dependencies:
 pip install -r requirements.txt
 ```
 
-Pull the model you'd like to use:
-
-```
-ollama pull zephyr:7b-alpha-q4_K_M
-```
-
 ### Ask questions
 
 ```shell
-python privateGPT.py --hide-source
+TOGETHER_API_KEY=... python privateGPT.py --hide-source
 
 Enter a query: How many locations does WeWork have?
 
 > Answer (took 17.7 s.):
 As of June 2023, WeWork has 777 locations worldwide, including 610 Consolidated Locations (as defined in the section entitled Key Performance Indicators).
-```
-
-### Try a different model:
-
-```
-ollama pull llama2:13b
-MODEL=llama2:13b python privateGPT.py
 ```
 
 ## Adding more files
